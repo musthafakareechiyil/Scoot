@@ -1,0 +1,56 @@
+<%= form_with(model: @user, url: signup_path) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <% if @user.errors.has_key?(:username) %>
+      <span class="error"><%= @user.errors[:username].first %></span>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <% if @user.errors.has_key?(:email) %>
+      <span class="error"><%= @user.errors[:email].first %></span>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+    <% if @user.errors.has_key?(:phone) %>
+      <span class="error"><%= @user.errors[:phone].first %></span>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <% if @user.errors.has_key?(:password) %>
+      <span class="error"><%= @user.errors[:password].first %></span>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    <% if @user.errors.has_key?(:password_confirmation) %>
+      <span class="error"><%= @user.errors[:password_confirmation].first %></span>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
